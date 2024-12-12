@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sajid_bazaar/presentation/controllers/auth_page_controllers/login_page_controller.dart';
 import 'package:sajid_bazaar/presentation/pages/auth_pages/signup_page.dart';
 import 'package:sajid_bazaar/presentation/pages/widgets/app_exits_dialog_widget.dart';
 import 'package:sajid_bazaar/presentation/utils/app_colors_util.dart';
@@ -92,26 +93,32 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           const SizedBox(height: 10),
-          TextFormField(
-            controller: passTEController,
-            keyboardType: TextInputType.text,
-            obscureText: true,
-            decoration: InputDecoration(
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: AppColorsUtil.backgroundGreen,
+          GetBuilder<LoginPageController>(builder: (loginPageController) {
+            return TextFormField(
+              controller: passTEController,
+              keyboardType: TextInputType.text,
+              obscureText: loginPageController.showPassword,
+              decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: AppColorsUtil.backgroundGreen,
+                  ),
+                ),
+                hintText: "Password",
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    loginPageController.togglePasswordHideShow();
+                  },
+                  icon: Icon(
+                    !loginPageController.showPassword
+                        ? Icons.remove_red_eye_outlined
+                        : Icons.password_outlined,
+                    color: AppColorsUtil.backgroundGreen,
+                  ),
                 ),
               ),
-              hintText: "Password",
-              suffixIcon: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.password_outlined,
-                  color: AppColorsUtil.backgroundGreen,
-                ),
-              ),
-            ),
-          ),
+            );
+          }),
           const SizedBox(height: 20),
           Row(
             children: [
