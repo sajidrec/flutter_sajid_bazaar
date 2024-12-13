@@ -133,17 +133,31 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               const Spacer(),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(
-                    AppColorsUtil.backgroundGreen,
-                  ),
-                  foregroundColor: WidgetStatePropertyAll(
-                    AppColorsUtil.foreGroundWhite,
-                  ),
-                ),
-                onPressed: () {},
-                child: const Text("Sign In"),
+              GetBuilder<LoginPageController>(
+                builder: (loginPageController) {
+                  return loginPageController.getLoginInProgressStatus
+                      ? CircularProgressIndicator(
+                          color: AppColorsUtil.backgroundGreen,
+                        )
+                      : ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                              AppColorsUtil.backgroundGreen,
+                            ),
+                            foregroundColor: WidgetStatePropertyAll(
+                              AppColorsUtil.foreGroundWhite,
+                            ),
+                          ),
+                          onPressed: () async {
+                            FocusScope.of(context).unfocus();
+                            await loginPageController.login(
+                              email: _emailTEController.text.trim(),
+                              password: _passTEController.text,
+                            );
+                          },
+                          child: const Text("Sign In"),
+                        );
+                },
               ),
             ],
           ),

@@ -3,7 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sajid_bazaar/presentation/pages/auth_pages/login_page/login_page.dart';
+import 'package:sajid_bazaar/presentation/pages/home_page/home_page.dart';
 import 'package:sajid_bazaar/presentation/utils/app_colors_util.dart';
+import 'package:sajid_bazaar/presentation/utils/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -16,11 +19,26 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-
-    Timer(
-      const Duration(seconds: 2),
-      () => Get.offAll(() => const LoginPage()),
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) async {
+        await _moveToNextPage();
+      },
     );
+  }
+
+  Future<void> _moveToNextPage() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getString(Constants.userInfoKey)?.isNotEmpty ?? true) {
+      Timer(
+        const Duration(seconds: 2),
+        () => Get.offAll(() => const HomePage()),
+      );
+    } else {
+      Timer(
+        const Duration(seconds: 2),
+        () => Get.offAll(() => const LoginPage()),
+      );
+    }
   }
 
   @override
