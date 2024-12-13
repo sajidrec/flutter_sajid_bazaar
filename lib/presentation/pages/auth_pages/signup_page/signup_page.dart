@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sajid_bazaar/presentation/controllers/auth_page_controllers/signup_page_controller.dart';
+import 'package:sajid_bazaar/presentation/pages/auth_pages/signup_page/widgets/build_page_title.dart';
+import 'package:sajid_bazaar/presentation/pages/auth_pages/signup_page/widgets/build_sign_in_sign_up_selection_row.dart';
+import 'package:sajid_bazaar/presentation/pages/auth_pages/signup_page/widgets/build_upload_selection_button.dart';
 
 import 'package:sajid_bazaar/presentation/utils/app_colors_util.dart';
 import 'package:sajid_bazaar/presentation/utils/constants.dart';
@@ -45,9 +48,9 @@ class _SignupPageState extends State<SignupPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 10),
-                      _buildSignInSignUpSelectionRow(),
+                      const BuildSignInSignUpSelectionRow(),
                       const SizedBox(height: 10),
-                      _buildPageTitle(),
+                      const BuildPageTitle(),
                       const SizedBox(height: 12),
                       _buildForm(
                         nameTEController: _nameTEController,
@@ -90,7 +93,7 @@ class _SignupPageState extends State<SignupPage> {
             },
           ),
           const SizedBox(height: 10),
-          _buildUploadSelectionButton(),
+          const BuildUploadSelectionButton(),
           const SizedBox(height: 10),
           TextFormField(
             controller: nameTEController,
@@ -209,131 +212,20 @@ class _SignupPageState extends State<SignupPage> {
                     }
                   },
                   child: GetBuilder<SignupPageController>(
-                      builder: (signupPageController) {
-                    return signupPageController.getSignUpInProgressStatus
-                        ? CircularProgressIndicator(
-                            color: AppColorsUtil.foreGroundWhite,
-                          )
-                        : const Text("Sign Up");
-                  }),
+                    builder: (signupPageController) {
+                      return signupPageController.getSignUpInProgressStatus
+                          ? CircularProgressIndicator(
+                              color: AppColorsUtil.foreGroundWhite,
+                            )
+                          : const Text("Sign Up");
+                    },
+                  ),
                 ),
               ),
             ],
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildUploadSelectionButton() {
-    return InkWell(
-      onTap: () async {
-        await Get.find<SignupPageController>().selectProfilePicture();
-      },
-      child: Row(
-        children: [
-          Container(
-            height: Get.height / 25,
-            width: Get.width / 3.5,
-            decoration: BoxDecoration(
-              color: AppColorsUtil.backgroundBlack,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(10),
-                bottomLeft: Radius.circular(10),
-              ),
-            ),
-            child: Icon(
-              Icons.upload,
-              color: AppColorsUtil.foreGroundWhite,
-            ),
-          ),
-          Expanded(
-            child: Container(
-              height: Get.height / 25,
-              width: Get.width / 3.5,
-              decoration: BoxDecoration(
-                color: AppColorsUtil.backgroundDefault,
-                borderRadius: const BorderRadius.only(
-                  topRight: Radius.circular(10),
-                  bottomRight: Radius.circular(10),
-                ),
-              ),
-              child: const Center(
-                child: Text(
-                  "Choose profile photo",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildPageTitle() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          "Welcome to Sajid Bazaar",
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 26,
-          ),
-        ),
-        Text(
-          "Let's get started",
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 20,
-            color: AppColorsUtil.foreGroundGray,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildSignInSignUpSelectionRow() {
-    return Row(
-      children: [
-        TextButton(
-          style: ButtonStyle(
-            padding: WidgetStateProperty.all(EdgeInsets.zero),
-            minimumSize: WidgetStateProperty.all<Size>(Size.zero),
-            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          ),
-          onPressed: () {
-            Get.back();
-          },
-          child: Text(
-            "Sign In",
-            style: TextStyle(
-              color: AppColorsUtil.foreGroundBlack,
-              fontSize: 18,
-            ),
-          ),
-        ),
-        const Spacer(),
-        TextButton(
-          onPressed: () {},
-          style: ButtonStyle(
-            padding: WidgetStateProperty.all(EdgeInsets.zero),
-            minimumSize: WidgetStateProperty.all<Size>(Size.zero),
-            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          ),
-          child: Text(
-            "Sign Up",
-            style: TextStyle(
-              color: AppColorsUtil.foreGroundGreen,
-              fontSize: 18,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sajid_bazaar/presentation/controllers/auth_page_controllers/login_page_controller.dart';
-import 'package:sajid_bazaar/presentation/pages/auth_pages/signup_page.dart';
+import 'package:sajid_bazaar/presentation/pages/auth_pages/login_page/widgets/build_page_title.dart';
+import 'package:sajid_bazaar/presentation/pages/auth_pages/login_page/widgets/build_sign_in_sign_up_selection_row.dart';
 import 'package:sajid_bazaar/presentation/pages/widgets/app_exits_dialog_widget.dart';
 import 'package:sajid_bazaar/presentation/utils/app_colors_util.dart';
 
@@ -46,14 +47,11 @@ class _LoginPageState extends State<LoginPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 10),
-                        _buildSignInSignUpSelectionRow(),
+                        const BuildSignInSignUpSelectionRow(),
                         const SizedBox(height: 10),
-                        _buildPageTitle(),
+                        const BuildPageTitle(),
                         const SizedBox(height: 12),
-                        _buildForm(
-                          emailTEController: _emailTEController,
-                          passTEController: _passTEController,
-                        ),
+                        _buildForm(),
                         const SizedBox(height: 16),
                       ],
                     ),
@@ -68,16 +66,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildForm({
-    required emailTEController,
-    required passTEController,
-  }) {
+  Widget _buildForm() {
     return Form(
       key: _formKey,
       child: Column(
         children: [
           TextFormField(
-            controller: emailTEController,
+            controller: _emailTEController,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
               focusedBorder: OutlineInputBorder(
@@ -95,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
           const SizedBox(height: 10),
           GetBuilder<LoginPageController>(builder: (loginPageController) {
             return TextFormField(
-              controller: passTEController,
+              controller: _passTEController,
               keyboardType: TextInputType.text,
               obscureText: loginPageController.showPassword,
               decoration: InputDecoration(
@@ -140,12 +135,13 @@ class _LoginPageState extends State<LoginPage> {
               const Spacer(),
               ElevatedButton(
                 style: ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(
-                      AppColorsUtil.backgroundGreen,
-                    ),
-                    foregroundColor: WidgetStatePropertyAll(
-                      AppColorsUtil.foreGroundWhite,
-                    )),
+                  backgroundColor: WidgetStatePropertyAll(
+                    AppColorsUtil.backgroundGreen,
+                  ),
+                  foregroundColor: WidgetStatePropertyAll(
+                    AppColorsUtil.foreGroundWhite,
+                  ),
+                ),
                 onPressed: () {},
                 child: const Text("Sign In"),
               ),
@@ -153,69 +149,6 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildPageTitle() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          "Sign In to Sajid Bazaar",
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 26,
-          ),
-        ),
-        Text(
-          "Enter email and password to continue",
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 20,
-            color: AppColorsUtil.foreGroundGray,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildSignInSignUpSelectionRow() {
-    return Row(
-      children: [
-        TextButton(
-          style: ButtonStyle(
-            padding: WidgetStateProperty.all(EdgeInsets.zero),
-            minimumSize: WidgetStateProperty.all<Size>(Size.zero),
-            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          ),
-          onPressed: () {},
-          child: Text(
-            "Sign In",
-            style: TextStyle(
-              color: AppColorsUtil.foreGroundGreen,
-              fontSize: 18,
-            ),
-          ),
-        ),
-        const Spacer(),
-        TextButton(
-          onPressed: () {
-            Get.to(() => const SignupPage());
-          },
-          style: ButtonStyle(
-            padding: WidgetStateProperty.all(EdgeInsets.zero),
-            minimumSize: WidgetStateProperty.all<Size>(Size.zero),
-            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          ),
-          child: Text(
-            "Sign Up",
-            style: TextStyle(
-              color: AppColorsUtil.foreGroundBlack,
-              fontSize: 18,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

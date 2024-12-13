@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sajid_bazaar/presentation/pages/auth_pages/login_page.dart';
+import 'package:sajid_bazaar/presentation/pages/auth_pages/login_page/login_page.dart';
 import 'package:sajid_bazaar/presentation/utils/app_colors_util.dart';
 
 class SplashPage extends StatefulWidget {
