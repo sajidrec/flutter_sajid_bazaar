@@ -1,7 +1,7 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:sajid_bazaar/presentation/models/user_model.dart';
-import 'package:sajid_bazaar/presentation/pages/home_page/home_page.dart';
+import 'package:sajid_bazaar/presentation/pages/top_navbar_page/top_navbar_page.dart';
 import 'package:sajid_bazaar/presentation/utils/app_colors_util.dart';
 import 'package:sajid_bazaar/presentation/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -51,7 +51,7 @@ class LoginPageController extends GetxController {
         textColor: AppColorsUtil.foreGroundWhite,
       );
 
-      Get.offAll(() => const HomePage());
+      Get.offAll(() => const TopNavbarPage());
     } catch (e) {
       await Fluttertoast.showToast(
         msg: e.toString(),

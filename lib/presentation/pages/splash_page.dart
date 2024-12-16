@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sajid_bazaar/presentation/pages/auth_pages/login_page/login_page.dart';
-import 'package:sajid_bazaar/presentation/pages/home_page/home_page.dart';
+import 'package:sajid_bazaar/presentation/pages/top_navbar_page/top_navbar_page.dart';
 import 'package:sajid_bazaar/presentation/utils/app_colors_util.dart';
 import 'package:sajid_bazaar/presentation/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,7 +31,7 @@ class _SplashPageState extends State<SplashPage> {
     if (prefs.getString(Constants.userInfoKey)?.isNotEmpty ?? true) {
       Timer(
         const Duration(seconds: 2),
-        () => Get.offAll(() => const HomePage()),
+        () => Get.offAll(() => const TopNavbarPage()),
       );
     } else {
       Timer(

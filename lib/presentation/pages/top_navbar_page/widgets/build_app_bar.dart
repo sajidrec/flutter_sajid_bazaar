@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sajid_bazaar/presentation/controllers/top_navbar_page_controller.dart';
 import 'package:sajid_bazaar/presentation/utils/app_colors_util.dart';
 
 class BuildAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -13,6 +15,11 @@ class BuildAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: AppColorsUtil.backgroundGreen,
       foregroundColor: AppColorsUtil.foreGroundWhite,
       bottom: TabBar(
+        onTap: (index) {
+          Get.find<TopNavbarPageController>().changeScreenNav(
+            index: index,
+          );
+        },
         indicatorColor: AppColorsUtil.foreGroundWhite,
         unselectedLabelColor: AppColorsUtil.foreGroundUnselected,
         labelColor: AppColorsUtil.foreGroundWhite,
