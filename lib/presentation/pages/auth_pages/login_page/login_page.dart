@@ -4,7 +4,7 @@ import 'package:sajid_bazaar/presentation/controllers/auth_page_controllers/logi
 import 'package:sajid_bazaar/presentation/pages/auth_pages/login_page/widgets/build_page_title.dart';
 import 'package:sajid_bazaar/presentation/pages/auth_pages/login_page/widgets/build_sign_in_sign_up_selection_row.dart';
 import 'package:sajid_bazaar/presentation/pages/widgets/app_exits_dialog_widget.dart';
-import 'package:sajid_bazaar/presentation/utils/app_colors_util.dart';
+import 'package:sajid_bazaar/utils/app_colors_util.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

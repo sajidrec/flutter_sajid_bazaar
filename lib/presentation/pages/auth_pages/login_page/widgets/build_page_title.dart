@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sajid_bazaar/presentation/utils/app_colors_util.dart';
+import 'package:sajid_bazaar/utils/app_colors_util.dart';
 
 class BuildPageTitle extends StatelessWidget {
   const BuildPageTitle({

@@ -19,7 +19,7 @@ class _TopNavbarPageState extends State<TopNavbarPage> {
           return DefaultTabController(
             length: 4,
             child: Scaffold(
-              appBar: BuildAppBar(),
+              appBar: const BuildAppBar(),
               body: topNavbarPageController.getScreen,
             ),
           );

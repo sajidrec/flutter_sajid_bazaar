@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sajid_bazaar/presentation/utils/app_colors_util.dart';
+import 'package:sajid_bazaar/utils/app_colors_util.dart';
 
 Future<void> appExitDialog() async {
   return await Get.defaultDialog(

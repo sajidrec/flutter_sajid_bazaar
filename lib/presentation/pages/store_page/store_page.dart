@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sajid_bazaar/presentation/pages/store_page/widgets/all_categories_widget.dart';
 
 class StorePage extends StatelessWidget {
   const StorePage({super.key});
@@ -7,8 +7,15 @@ class StorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SafeArea(
-        child: Scaffold(
-      body: Text("Store page"),
-    ));
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              AllCategoriesWidget(),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

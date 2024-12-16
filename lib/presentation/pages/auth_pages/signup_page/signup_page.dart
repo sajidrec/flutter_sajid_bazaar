@@ -4,9 +4,8 @@ import 'package:sajid_bazaar/presentation/controllers/auth_page_controllers/sign
 import 'package:sajid_bazaar/presentation/pages/auth_pages/signup_page/widgets/build_page_title.dart';
 import 'package:sajid_bazaar/presentation/pages/auth_pages/signup_page/widgets/build_sign_in_sign_up_selection_row.dart';
 import 'package:sajid_bazaar/presentation/pages/auth_pages/signup_page/widgets/build_upload_selection_button.dart';
-
-import 'package:sajid_bazaar/presentation/utils/app_colors_util.dart';
-import 'package:sajid_bazaar/presentation/utils/constants.dart';
+import 'package:sajid_bazaar/utils/app_colors_util.dart';
+import 'package:sajid_bazaar/utils/constants.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});

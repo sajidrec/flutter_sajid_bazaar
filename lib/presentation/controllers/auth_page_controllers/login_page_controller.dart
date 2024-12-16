@@ -1,9 +1,9 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:sajid_bazaar/presentation/models/user_model.dart';
+import 'package:sajid_bazaar/data/models/user_model.dart';
 import 'package:sajid_bazaar/presentation/pages/top_navbar_page/top_navbar_page.dart';
-import 'package:sajid_bazaar/presentation/utils/app_colors_util.dart';
-import 'package:sajid_bazaar/presentation/utils/constants.dart';
+import 'package:sajid_bazaar/utils/app_colors_util.dart';
+import 'package:sajid_bazaar/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

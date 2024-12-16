@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:sajid_bazaar/presentation/models/user_model.dart';
-import 'package:sajid_bazaar/presentation/utils/app_colors_util.dart';
+import 'package:sajid_bazaar/data/models/user_model.dart';
+import 'package:sajid_bazaar/utils/app_colors_util.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SignupPageController extends GetxController {

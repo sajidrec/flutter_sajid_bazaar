@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sajid_bazaar/presentation/controllers/top_navbar_page_controller.dart';
-import 'package:sajid_bazaar/presentation/utils/app_colors_util.dart';
+import 'package:sajid_bazaar/utils/app_colors_util.dart';
 
 class BuildAppBar extends StatelessWidget implements PreferredSizeWidget {
   const BuildAppBar({

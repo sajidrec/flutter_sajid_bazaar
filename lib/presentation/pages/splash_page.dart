@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sajid_bazaar/presentation/pages/auth_pages/login_page/login_page.dart';
 import 'package:sajid_bazaar/presentation/pages/top_navbar_page/top_navbar_page.dart';
-import 'package:sajid_bazaar/presentation/utils/app_colors_util.dart';
-import 'package:sajid_bazaar/presentation/utils/constants.dart';
+import 'package:sajid_bazaar/utils/app_colors_util.dart';
+import 'package:sajid_bazaar/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashPage extends StatefulWidget {

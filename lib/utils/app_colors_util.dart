@@ -5,6 +5,7 @@ class AppColorsUtil {
   static Color backgroundBlack = Colors.black;
   static Color backgroundDefault = const Color(0xebeff3ff);
   static Color backgroundGreen = Colors.green;
+  static Color backgroundLightGreen = Colors.green.shade50;
   static Color backgroundRed = Colors.red;
   static Color foreGroundWhite = Colors.white;
   static Color foreGroundBlack = Colors.black;
