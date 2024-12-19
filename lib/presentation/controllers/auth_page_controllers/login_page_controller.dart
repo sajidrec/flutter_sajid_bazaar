@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:sajid_bazaar/data/models/user_model.dart';
@@ -42,7 +44,7 @@ class LoginPageController extends GetxController {
 
       await prefs.setString(
         Constants.userInfoKey,
-        currentUser.toJson().toString(),
+        jsonEncode(currentUser.toJson()),
       );
 
       await Fluttertoast.showToast(

@@ -4,7 +4,9 @@ import 'package:file_picker/file_picker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:sajid_bazaar/data/models/user_model.dart';
+import 'package:sajid_bazaar/data/utils/urls.dart';
 import 'package:sajid_bazaar/utils/app_colors_util.dart';
+import 'package:sajid_bazaar/utils/constants.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SignupPageController extends GetxController {
@@ -30,9 +32,19 @@ class SignupPageController extends GetxController {
     final supabase = Supabase.instance.client;
 
     try {
-      String profilePicPath = await supabase.storage.from('user_info').upload(
-            'profilePics/$email.png',
+      await supabase.storage.from(Constants.userInfoBucketName).upload(
+            Urls.profilePicUrl(
+              email: email,
+            ),
             _profilePicture!,
+          );
+
+      String profilePicPath = supabase.storage
+          .from(Constants.userInfoBucketName)
+          .getPublicUrl(
+            Urls.profilePicUrl(
+              email: email,
+            ),
           );
 
       UserModel newUser = UserModel(
