@@ -37,67 +37,68 @@ class _ProfilePageState extends State<ProfilePage> {
               top: 5,
             ),
             child: GetBuilder<ProfilePageController>(
-                builder: (profilePageController) {
-              return Column(
-                children: [
-                  Column(
-                    children: [
-                      Center(
-                        child: SizedBox(
-                          width: Get.height / 5.8,
-                          height: Get.height / 5.8,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: AppColorsUtil.foreGroundGreen,
-                                width: 3,
-                              ),
-                            ),
-                            child: ClipOval(
-                              child: CachedNetworkImage(
-                                fit: BoxFit.cover,
-                                imageUrl: profilePageController
-                                        .getUserModel?.profilePic ??
-                                    "",
-                                placeholder: (context, url) =>
-                                    CircularProgressIndicator(
+              builder: (profilePageController) {
+                return Column(
+                  children: [
+                    Column(
+                      children: [
+                        Center(
+                          child: SizedBox(
+                            width: Get.height / 5.8,
+                            height: Get.height / 5.8,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
                                   color: AppColorsUtil.foreGroundGreen,
+                                  width: 3,
                                 ),
-                                errorWidget: (context, url, error) => Icon(
-                                  Icons.error,
-                                  size: Get.width / 5.5,
-                                  color: AppColorsUtil.foreGroundRed,
+                              ),
+                              child: ClipOval(
+                                child: CachedNetworkImage(
+                                  fit: BoxFit.cover,
+                                  imageUrl: profilePageController
+                                          .getUserModel?.profilePic ??
+                                      "",
+                                  placeholder: (context, url) =>
+                                      CircularProgressIndicator(
+                                    color: AppColorsUtil.foreGroundGreen,
+                                  ),
+                                  errorWidget: (context, url, error) => Icon(
+                                    Icons.error,
+                                    size: Get.width / 5.5,
+                                    color: AppColorsUtil.foreGroundRed,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      Text(
-                        profilePageController.getUserModel?.name ?? "",
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
+                        Text(
+                          profilePageController.getUserModel?.name ?? "",
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                          ),
                         ),
-                      ),
-                      Text(
-                        profilePageController.getUserModel?.email ?? "",
-                        style: const TextStyle(
-                          fontStyle: FontStyle.italic,
+                        Text(
+                          profilePageController.getUserModel?.email ?? "",
+                          style: const TextStyle(
+                            fontStyle: FontStyle.italic,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  const OrderHistoryButtonWidget(),
-                  const SizedBox(height: 10),
-                  const CustomizeProfileButtonWidget(),
-                  const SizedBox(height: 10),
-                  const LogOutButtonWidget(),
-                ],
-              );
-            }),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    const OrderHistoryButtonWidget(),
+                    const SizedBox(height: 10),
+                    const CustomizeProfileButtonWidget(),
+                    const SizedBox(height: 10),
+                    const LogOutButtonWidget(),
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),
