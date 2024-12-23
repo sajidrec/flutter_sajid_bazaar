@@ -4,4 +4,6 @@ class Constants {
 
   static const String userInfoKey = "userInfoKey";
   static const String userInfoBucketName = "user_info";
+  static const String recommendedItemsTableName = "recommended_items_info";
+  static const String recommendedItemsColumnName = "item_data";
 }
