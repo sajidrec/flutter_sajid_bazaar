@@ -28,15 +28,19 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> _moveToNextPage() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.getString(Constants.userInfoKey)?.isNotEmpty ?? true) {
+    if (prefs.getString(Constants.userInfoKey)?.isNotEmpty ?? false) {
       Timer(
         const Duration(seconds: 2),
-        () => Get.offAll(() => const TopNavbarPage()),
+        () => Get.offAll(
+          () => const TopNavbarPage(),
+        ),
       );
     } else {
       Timer(
         const Duration(seconds: 2),
-        () => Get.offAll(() => const LoginPage()),
+        () => Get.offAll(
+          () => const LoginPage(),
+        ),
       );
     }
   }

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:sajid_bazaar/presentation/controllers/auth_page_controllers/login_page_controller.dart';
 import 'package:sajid_bazaar/presentation/controllers/auth_page_controllers/signup_page_controller.dart';
+import 'package:sajid_bazaar/presentation/controllers/item_details_page_controller.dart';
 import 'package:sajid_bazaar/presentation/controllers/profile_page_controller.dart';
 import 'package:sajid_bazaar/presentation/controllers/store_page_controller.dart';
 import 'package:sajid_bazaar/presentation/controllers/top_navbar_page_controller.dart';
@@ -13,5 +14,6 @@ class ControllerBinder extends Bindings {
     Get.put(TopNavbarPageController());
     Get.put(StorePageController());
     Get.put(ProfilePageController());
+    Get.put(ItemDetailsPageController());
   }
 }
