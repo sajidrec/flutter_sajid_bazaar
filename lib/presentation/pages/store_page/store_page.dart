@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sajid_bazaar/presentation/controllers/store_page_controller.dart';
 import 'package:sajid_bazaar/presentation/pages/item_details_page/item_details_page.dart';
+import 'package:sajid_bazaar/presentation/pages/search_result_page/search_result_page.dart';
 import 'package:sajid_bazaar/presentation/pages/store_page/widgets/all_categories_widget.dart';
 import 'package:sajid_bazaar/utils/app_colors_util.dart';
 
@@ -24,6 +25,14 @@ class _StorePageState extends State<StorePage> {
     );
   }
 
+  final TextEditingController _searchTEController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _searchTEController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -32,6 +41,19 @@ class _StorePageState extends State<StorePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: AppColorsUtil.backgroundWhite,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 20,
+                    right: 20,
+                    top: 10,
+                  ),
+                  child: _buildSearchForm(),
+                ),
+              ),
               const AllCategoriesWidget(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -52,6 +74,45 @@ class _StorePageState extends State<StorePage> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildSearchForm() {
+    return Form(
+      child: Column(
+        children: [
+          TextFormField(
+            controller: _searchTEController,
+            cursorColor: AppColorsUtil.foreGroundGreen,
+            keyboardType: TextInputType.text,
+            decoration: InputDecoration(
+              hintText: "Search any item",
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(
+                  color: AppColorsUtil.foreGroundGreen,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(
+                  color: AppColorsUtil.foreGroundGreen,
+                ),
+              ),
+              suffixIcon: IconButton(
+                onPressed: () {
+                  Get.to(
+                    () => SearchResultPage(
+                      searchedKeyWord: _searchTEController.text.toString(),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.search),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
