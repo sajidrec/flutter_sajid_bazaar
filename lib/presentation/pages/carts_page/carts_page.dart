@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:sajid_bazaar/presentation/pages/carts_page/widgets/buy_all_button_widget.dart';
+import 'package:sajid_bazaar/utils/app_colors_util.dart';
 
 class CartsPage extends StatelessWidget {
   const CartsPage({super.key});
@@ -12,22 +13,35 @@ class CartsPage extends StatelessWidget {
         body: Stack(
           children: [
             ListView.separated(
-              itemBuilder: (context, index) => ListTile(
-                title: const Text("Sajid"),
-                subtitle: const Text("Hossain"),
-                leading: CachedNetworkImage(
-                  imageUrl:
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJLtBmMcXbiM8k1bNd48Fu08N6XQyjvBi7WQ&s",
-                ),
-                trailing: const Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text("Unit Price : \$1000"),
-                      Text("Quantity : 100"),
-                    ],
+              itemBuilder: (context, index) => Row(
+                children: [
+                  Expanded(
+                    child: ListTile(
+                      title: const Text("Sajid"),
+                      subtitle: const Text("Hossain"),
+                      leading: CachedNetworkImage(
+                        imageUrl:
+                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJLtBmMcXbiM8k1bNd48Fu08N6XQyjvBi7WQ&s",
+                      ),
+                      trailing: const Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text("Unit Price : \$1000"),
+                            Text("Quantity : 100"),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.remove_circle,
+                      color: AppColorsUtil.backgroundRed,
+                    ),
+                  ),
+                ],
               ),
               separatorBuilder: (context, index) => const SizedBox(
                 height: 5,
