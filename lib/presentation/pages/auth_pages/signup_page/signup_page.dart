@@ -143,32 +143,38 @@ class _SignupPageState extends State<SignupPage> {
             ),
           ),
           const SizedBox(height: 10),
-          TextFormField(
-            validator: (value) {
-              if ((value?.length ?? 0) < 6) {
-                return "Password must be at least 6 characters";
-              }
-              return null;
-            },
-            controller: passTEController,
-            keyboardType: TextInputType.text,
-            obscureText: true,
-            decoration: InputDecoration(
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: AppColorsUtil.backgroundGreen,
+          GetBuilder<SignupPageController>(builder: (controller) {
+            return TextFormField(
+              validator: (value) {
+                if ((value?.length ?? 0) < 6) {
+                  return "Password must be at least 6 characters";
+                }
+                return null;
+              },
+              controller: passTEController,
+              keyboardType: TextInputType.text,
+              obscureText: !controller.showPassword,
+              decoration: InputDecoration(
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: AppColorsUtil.backgroundGreen,
+                  ),
+                ),
+                hintText: "Password",
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    controller.togglePass();
+                  },
+                  icon: Icon(
+                    controller.showPassword
+                        ? Icons.remove_red_eye
+                        : Icons.password_outlined,
+                    color: AppColorsUtil.backgroundGreen,
+                  ),
                 ),
               ),
-              hintText: "Password",
-              suffixIcon: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.password_outlined,
-                  color: AppColorsUtil.backgroundGreen,
-                ),
-              ),
-            ),
-          ),
+            );
+          }),
           const SizedBox(height: 20),
           Row(
             children: [

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sajid_bazaar/utils/app_colors_util.dart';
 
@@ -10,7 +9,7 @@ class OrderHistoryPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Order History"),
+          title: const Text("Order History"),
           backgroundColor: AppColorsUtil.backgroundGreen,
           foregroundColor: AppColorsUtil.foreGroundWhite,
         ),
@@ -38,7 +37,7 @@ class OrderHistoryPage extends StatelessWidget {
               ),
             ),
           ),
-          separatorBuilder: (context, index) => SizedBox(height: 2),
+          separatorBuilder: (context, index) => const SizedBox(height: 2),
           itemCount: 20,
         ),
       ),

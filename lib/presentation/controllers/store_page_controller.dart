@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -63,9 +62,13 @@ class StorePageController extends GetxController {
   ];
   List<ItemCardModel> _listOfRecommendedItems = [];
 
+  List<ItemCardModel> _listOfNewArrivalItems = [];
+
   List<List> get getListOfAllCategories => _listOfAllCategories;
 
   List<ItemCardModel> get getListOfRecommendedItems => _listOfRecommendedItems;
+
+  List<ItemCardModel> get getListOfNewArrivalItems => _listOfNewArrivalItems;
 
   Future<void> fetchRecommendedItems() async {
     final supabase = Supabase.instance.client;
@@ -77,6 +80,23 @@ class StorePageController extends GetxController {
       _listOfRecommendedItems.add(
         ItemCardModel.fromJson(
           data[i][Constants.recommendedItemsColumnName],
+        ),
+      );
+      // print();
+    }
+    update();
+  }
+
+  Future<void> fetchNewArrivalItems() async {
+    final supabase = Supabase.instance.client;
+    final data = await supabase
+        .from(Constants.newArrivalItemsTableName)
+        .select(Constants.newArrivalItemsColumnName);
+    _listOfNewArrivalItems = [];
+    for (int i = 0; i < data.length; i++) {
+      _listOfNewArrivalItems.add(
+        ItemCardModel.fromJson(
+          data[i][Constants.newArrivalItemsColumnName],
         ),
       );
       // print();

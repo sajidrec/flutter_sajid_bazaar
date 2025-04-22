@@ -38,7 +38,7 @@ dependencies:
   get: ^4.6.6
   file_picker: ^8.1.4
   supabase_flutter: ^2.8.1
-  fluttertoast: ^8.2.8
+  fluttertoast: ^8.2.12
   shared_preferences: ^2.3.3
   font_awesome_flutter: ^10.8.0
   cached_network_image: ^3.4.1

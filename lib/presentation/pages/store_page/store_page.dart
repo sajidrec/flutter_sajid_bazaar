@@ -18,11 +18,12 @@ class _StorePageState extends State<StorePage> {
   @override
   void initState() {
     super.initState();
-    WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback(
-      (timeStamp) async {
-        await Get.find<StorePageController>().fetchRecommendedItems();
-      },
-    );
+    initialPageSetup();
+  }
+
+  Future<void> initialPageSetup() async {
+    await Get.find<StorePageController>().fetchRecommendedItems();
+    await Get.find<StorePageController>().fetchNewArrivalItems();
   }
 
   final TextEditingController _searchTEController = TextEditingController();
@@ -68,6 +69,16 @@ class _StorePageState extends State<StorePage> {
                       ),
                     ),
                     _buildItemsYouMayLike(),
+                    const SizedBox(height: 12),
+                    const Text(
+                      "New Arrivals",
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    _buildNewArrivals(),
+                    const SizedBox(height: 50),
                   ],
                 ),
               ),
@@ -120,7 +131,7 @@ class _StorePageState extends State<StorePage> {
   Widget _buildItemsYouMayLike() {
     return SizedBox(
       height: Get.height / 3.9,
-      width: double.infinity,
+      width: Get.width,
       child: GetBuilder<StorePageController>(
         builder: (storePageController) {
           return ListView.separated(
@@ -141,6 +152,36 @@ class _StorePageState extends State<StorePage> {
             separatorBuilder: (context, index) =>
                 SizedBox(width: Get.width / 45),
             itemCount: storePageController.getListOfRecommendedItems.length,
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildNewArrivals() {
+    return SizedBox(
+      height: Get.height / 3.9,
+      width: Get.width,
+      child: GetBuilder<StorePageController>(
+        builder: (storePageController) {
+          return ListView.separated(
+            itemBuilder: (context, index) {
+              return Container(
+                decoration: BoxDecoration(
+                  color: AppColorsUtil.backgroundLightGreen,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                width: Get.height / 5,
+                child: _buildNewArrivalsItemCard(
+                  storePageController,
+                  index,
+                ),
+              );
+            },
+            scrollDirection: Axis.horizontal,
+            separatorBuilder: (context, index) =>
+                SizedBox(width: Get.width / 45),
+            itemCount: storePageController.getListOfNewArrivalItems.length,
           );
         },
       ),
@@ -174,6 +215,8 @@ class _StorePageState extends State<StorePage> {
                 color: AppColorsUtil.foreGroundGreen,
               ),
               fit: BoxFit.cover,
+              height: 100,
+              width: double.infinity,
               imageUrl:
                   storePageController.getListOfRecommendedItems[index].photo ??
                       "",
@@ -213,6 +256,89 @@ class _StorePageState extends State<StorePage> {
                   children: [
                     Text(
                       "Stock : ${storePageController.getListOfRecommendedItems[index].stocks.toString()}",
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNewArrivalsItemCard(
+    StorePageController storePageController,
+    int index,
+  ) {
+    return InkWell(
+      onTap: () {
+        Get.to(
+          ItemDetailsPage(
+            itemDetailsData:
+                storePageController.getListOfNewArrivalItems[index],
+          ),
+        );
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(12),
+              topLeft: Radius.circular(12),
+            ),
+            child: CachedNetworkImage(
+              placeholder: (context, url) => CircularProgressIndicator(
+                color: AppColorsUtil.foreGroundGreen,
+              ),
+              fit: BoxFit.cover,
+              height: 100,
+              width: double.infinity,
+              imageUrl:
+                  storePageController.getListOfNewArrivalItems[index].photo ??
+                      "",
+            ),
+          ),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Wrap(
+                  children: [
+                    Text(
+                      storePageController
+                              .getListOfNewArrivalItems[index].name ??
+                          "",
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+                Wrap(
+                  children: [
+                    Text(
+                      "\$${storePageController.getListOfNewArrivalItems[index].price.toString()}",
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+                Wrap(
+                  children: [
+                    Text(
+                      "Stock : ${storePageController.getListOfNewArrivalItems[index].stocks.toString()}",
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         overflow: TextOverflow.ellipsis,

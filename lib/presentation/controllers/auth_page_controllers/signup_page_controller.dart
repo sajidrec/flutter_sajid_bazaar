@@ -12,6 +12,9 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class SignupPageController extends GetxController {
   File? _profilePicture;
   String _fileName = "";
+  bool _showPassword = false;
+
+  bool get showPassword => _showPassword;
 
   String get getFileName => _fileName;
 
@@ -20,6 +23,11 @@ class SignupPageController extends GetxController {
   bool _signUpInProgressStatus = false;
 
   bool get getSignUpInProgressStatus => _signUpInProgressStatus;
+
+  void togglePass() {
+    _showPassword = !_showPassword;
+    update();
+  }
 
   Future<void> signup({
     required String email,
@@ -39,13 +47,12 @@ class SignupPageController extends GetxController {
             _profilePicture!,
           );
 
-      String profilePicPath = supabase.storage
-          .from(Constants.userInfoBucketName)
-          .getPublicUrl(
-            Urls.profilePicUrl(
-              email: email,
-            ),
-          );
+      String profilePicPath =
+          supabase.storage.from(Constants.userInfoBucketName).getPublicUrl(
+                Urls.profilePicUrl(
+                  email: email,
+                ),
+              );
 
       UserModel newUser = UserModel(
         email: email,
